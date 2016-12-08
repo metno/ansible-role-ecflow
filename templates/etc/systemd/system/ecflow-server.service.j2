@@ -1,0 +1,17 @@
+[Unit]
+Description=ecflow server service
+After=network.target
+
+[Service]
+Type=forking
+User={{daemon_user}}
+{% for key, value in systemd_env_vars.items() %}
+Environment="{{ key }}={{ value }}"
+{% endfor %}
+ExecStart=/usr/bin/ecflow_start.sh -p {{daemon_port}}
+ExecStop=/usr/bin/ecflow_client --halt=yes
+ExecStop=/usr/bin/ecflow_client --check_pt
+ExecStop=/usr/bin/ecflow_client --terminate=yes
+
+[Install]
+WantedBy=multi-user.target

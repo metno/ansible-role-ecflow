@@ -1,0 +1,19 @@
+ecflowserver_version: 4.3.0-1
+ecflowclient_version: 4.3.0-1 
+ecflowpython_version: 4.3.0-1
+ecflowui_version: 4.3.0-1
+#ecflowview_version: 
+
+download_base_url: https://software.ecmwf.int/wiki/download/attachments
+
+ecflowclient_url: "{{download_base_url}}/59790541/ecflow_4.3.0-1_amd64.deb"
+ecflowclient_sha256: 9249ff99c46ca0469c7307061ca222d6d6c3b170d3b3759501bdf0df55a2b8c9
+
+ecflowserver_url: "{{download_base_url}}/59790541/ecflow-server_4.3.0-1_amd64.deb"
+ecflowserver_sha256: 6c798a0709f359d7d187e7ff97b13766dd03511485c728d3aac31d7163b849cf
+
+ecflowpython_url: "{{download_base_url}}/59790541/ecflow-python_4.3.0-1_amd64.deb"
+ecflowpython_sha256: 3c140e09e72860cc6b4fae50ac949ac7414ab8a911edc836cdd1e2338c3794a1
+
+ecflowui_url: "{{download_base_url}}/59790541/ecflow-ui_4.3.0-1_amd64.deb"
+ecflowui_sha256: 2001c89e2ba875f084667c26f10e12bd9de2ccbdce43c7a8917d051fd9080b64

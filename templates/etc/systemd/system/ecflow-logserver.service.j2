@@ -1,0 +1,14 @@
+[Unit]
+Description=ecflow logserver service
+After=network.target
+
+[Service]
+Type=simple
+User={{daemon_user}}
+Environment="LOGPORT={{logserver_port}}"
+ExecStart=/usr/bin/ecflow_logsvr.pl
+Restart=on-abort
+
+
+[Install]
+WantedBy=multi-user.target

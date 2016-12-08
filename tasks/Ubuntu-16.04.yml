@@ -1,0 +1,96 @@
+ #### ecflow client ###
+- name: Check if ecflow client is installed
+  shell: "dpkg-query -W ecflow | grep {{ecflowclient_version}}"
+  register: ecflow_check_deb
+  failed_when: ecflow_check_deb.rc > 1
+  changed_when: ecflow_check_deb.rc == 1
+  when: ecflowclient_version is defined
+  
+- name: Download ecflow-client
+  get_url: 
+    url={{ecflowclient_url}}
+    dest="/tmp/ecflow_amd64.deb"
+    checksum="sha256:{{ecflowclient_sha256}}"
+  when:
+    - ecflow_check_deb.rc is defined and ecflow_check_deb.rc == 1
+    - ecflowclient_version is defined
+
+- name: Install ecflow-client
+  apt: deb="/tmp/ecflow_amd64.deb"
+  when:
+    - ecflow_check_deb.rc is defined and  ecflow_check_deb.rc == 1
+    - ecflowclient_version is defined
+
+### ecflow server ###
+- name: Check if ecflow server is installed
+  shell: "dpkg-query -W ecflow-server | grep {{ecflowserver_version}}"
+  register: ecflowserver_check_deb
+  failed_when: ecflowserver_check_deb.rc > 1
+  changed_when: ecflowserver_check_deb.rc == 1
+  when: ecflowserver_version is defined
+  
+- name: Download ecflow-server
+  get_url: 
+    url={{ecflowserver_url}}
+    dest="/tmp/ecflow_server_amd64.deb"
+    checksum="sha256:{{ecflowserver_sha256}}"
+  when:
+    - ecflowserver_check_deb.rc is defined and ecflowserver_check_deb.rc == 1
+    - ecflowserver_version is defined
+
+- name: Install ecflow-server
+  apt: deb="/tmp/ecflow_server_amd64.deb"
+  when:
+    - ecflowserver_check_deb.rc is defined and  ecflowserver_check_deb.rc == 1
+    - ecflowserver_version is defined
+
+
+### ecflow python ###
+- name: Check if ecflow server is installed
+  shell: "dpkg-query -W ecflow-python | grep {{ecflowpython_version}}"
+  register: ecflowpython_check_deb
+  failed_when: ecflowpython_check_deb.rc > 1
+  changed_when: ecflowpython_check_deb.rc == 1
+  when: ecflowpython_version is defined
+  
+- name: Download ecflow-python
+  get_url: 
+    url={{ecflowpython_url}}
+    dest="/tmp/ecflow_python_amd64.deb"
+    checksum="sha256:{{ecflowpython_sha256}}"
+  when:
+    - ecflowpython_check_deb.rc is defined and ecflowpython_check_deb.rc == 1
+    - ecflowpython_version is defined
+
+- name: Install ecflow-python
+  apt: deb="/tmp/ecflow_python_amd64.deb"
+  when:
+    - ecflowpython_check_deb.rc is defined and  ecflowpython_check_deb.rc == 1
+    - ecflowpython_version is defined
+
+
+### ecflow ui ###
+- name: Check if ecflow ui is installed
+  shell: "dpkg-query -W ecflow-ui | grep {{ecflowui_version}}"
+  register: ecflowui_check_deb
+  failed_when: ecflowui_check_deb.rc > 1
+  changed_when: ecflowui_check_deb.rc == 1
+  when: ecflowui_version is defined
+  
+- name: Download ecflow-ui
+  get_url: 
+    url={{ecflowui_url}}
+    dest="/tmp/ecflow_ui_amd64.deb"
+    checksum="sha256:{{ecflowui_sha256}}"
+  when:
+    - ecflowui_check_deb.rc is defined and ecflowui_check_deb.rc == 1
+    - ecflowui_version is defined
+
+- name: Install ecflow-ui
+  apt: deb="/tmp/ecflow_ui_amd64.deb"
+  when:
+    - ecflowui_check_deb.rc is defined and  ecflowui_check_deb.rc == 1
+    - ecflowui_version is defined
+
+
+
