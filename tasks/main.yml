@@ -24,8 +24,16 @@
 - include_vars: "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
 - include: "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
 
+- name: Check if daemon user is ldap
+  shell: "getent passwd {{daemon_user}}"
+  register: is_ldap_user
+  failed_when: is_ldap_user.rc == 1
+  changed_when: is_ldap_user.rc > 1
+
 - user: generate_ssh_key="{{genkeys_daemon_user}}" home={{daemon_home}} name="{{daemon_user}}" shell=/bin/bash 
-- file: path={{daemon_home}} mode=0775
+  when: is_ldap_user.rc == 2
+  
+- file: path="{{daemon_home}}" mode=0775 owner={{daemon_user}} group={{adm_user}} state=directory
 
 - name: Set public_ip_address = floating_ip_address if defined
   set_fact: 
