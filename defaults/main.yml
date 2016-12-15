@@ -1,12 +1,10 @@
-
-
 # The ecflow server is running as this user:
 #daemon_user: ecflow
 daemon_user: "{{ lookup('env','USER') }}"
 
 #daemon_home: /home/ecflow
 daemon_home: "{{ lookup('env','HOME') }}"
-daemon_home_grp: "{{deamon_user}}"
+daemon_home_grp: "{{daemon_user}}"
 
 daemon_port: 3141
 
@@ -17,10 +15,11 @@ genkeys_daemon_user: no
 systemd_env_vars:
     ECF_WORKSPACE: "{{ecf_workspace}}"
     ECF_BASE: "{{ecf_base}}"
+    ECF_BASE_DIR: "{{ecf_base_dir}}"
     ECF_ENVIRONMENT: "{{ecf_environment}}"
     ECF_SERVER: "{{public_ip_address}}"
     LOGPORT: "{{logserver_port}}"
     ECF_NODE: "{{public_ip_address}}"
     PATH: /bin:/usr/bin:/usr/sbin:/sbin:/opt/met-ecflow-support/bin
-    PERL5LIB: "$PERL5LIB:/opt/met-ecflow-support/lib/perl5"
-    PYTHONPATH: "$PYTHONPATH:/opt/met-ecflow-support/lib/python:/usr/lib/python2.7/site-packages"
+    PERL5LIB: "$PERL5LIB:{{adm_home}}/met-ecflow-support/lib/perl5"
+    PYTHONPATH: "$PYTHONPATH:{{adm_home}}/met-ecflow-support/lib/python:/usr/lib/python2.7/site-packages"
