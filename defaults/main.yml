@@ -20,6 +20,6 @@ systemd_env_vars:
     ECF_SERVER: "{{public_ip_address}}"
     LOGPORT: "{{logserver_port}}"
     ECF_NODE: "{{public_ip_address}}"
-    PATH: /bin:/usr/bin:/usr/sbin:/sbin:/opt/met-ecflow-support/bin
+    PATH: /bin:/usr/bin:/usr/sbin:/sbin:{{adm_home}}/met-ecflow-support/bin
     PERL5LIB: "$PERL5LIB:{{adm_home}}/met-ecflow-support/lib/perl5"
     PYTHONPATH: "$PYTHONPATH:{{adm_home}}/met-ecflow-support/lib/python:/usr/lib/python2.7/site-packages"
