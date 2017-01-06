@@ -3,7 +3,7 @@
 daemon_user: "{{ lookup('env','USER') }}"
 
 #daemon_home: /home/ecflow
-daemon_home: "{{ lookup('env','HOME') }}"
+daemon_home: "/home/{{daemon_user}}"
 daemon_home_grp: "{{daemon_user}}"
 
 daemon_port: 3141
