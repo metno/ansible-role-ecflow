@@ -33,7 +33,7 @@
 - user: generate_ssh_key="{{genkeys_daemon_user}}" home={{daemon_home}} name="{{daemon_user}}" shell=/bin/bash 
   when: is_ldap_user.rc == 2
   
-- file: path="{{daemon_home}}" mode=0775 owner="{{daemon_user}}" group="{{daemon_home_grp}}" state=directory
+- file: path="{{daemon_home}}" mode=0755 owner="{{daemon_user}}" group="{{daemon_home_grp}}" state=directory
 
 - name: Set public_ip_address = floating_ip_address if defined
   set_fact: 
