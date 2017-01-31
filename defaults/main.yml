@@ -11,6 +11,7 @@ daemon_port: 3141
 logserver_port: 9316
 # Generate ssh keys for the server user:
 genkeys_daemon_user: no
+ecf_server_dir: "{{daemon_home}}/ecflow_server"
 
 systemd_env_vars:
     ECF_WORKSPACE: "{{ecf_workspace}}"
@@ -18,8 +19,12 @@ systemd_env_vars:
     ECF_BASE_DIR: "{{ecf_base_dir}}"
     ECF_ENVIRONMENT: "{{ecf_environment}}"
     ECF_SERVER: "{{public_ip_address}}"
+    ECF_SERVER_DIR: "{{ecf_server_dir}}"
     LOGPORT: "{{logserver_port}}"
     ECF_NODE: "{{public_ip_address}}"
     PATH: /bin:/usr/bin:/usr/sbin:/sbin:{{adm_home}}/met-ecflow-support/bin
     PERL5LIB: "$PERL5LIB:{{adm_home}}/met-ecflow-support/lib/perl5"
     PYTHONPATH: "$PYTHONPATH:{{adm_home}}/met-ecflow-support/lib/python:/usr/lib/python2.7/site-packages"
+
+
+
