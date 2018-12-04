@@ -6,6 +6,7 @@ After=network.target
 Type=simple
 User={{daemon_user}}
 Environment="LOGPORT={{logserver_port}}"
+Environment="LOGPATH={{ecf_workspace}}"
 ExecStart=/usr/bin/ecflow_logsvr.pl
 Restart=on-abort
 
