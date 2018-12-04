@@ -60,7 +60,7 @@
 - block:
     - template: src=etc/systemd/system/ecflow-server.service.j2 dest=/etc/systemd/system/ecflow-server.service owner=root group=root mode=0644
       register: service_file
-    - shell: systemctl daemon-reload
+    - shell: "systemctl daemon-reload && systemctl restart ecflow-server"
       when: service_file.changed
   when:
     - have_systemd is defined
@@ -76,7 +76,7 @@
 - block:
     - template: src=etc/systemd/system/ecflow-logserver.service.j2 dest=/etc/systemd/system/ecflow-logserver.service owner=root group=root mode=0755
       register: service_file
-    - shell: systemctl daemon-reload
+    - shell: "systemctl daemon-reload && systemctl restart ecflow-logserver"
       when: service_file.changed
   when:
     - have_systemd is defined
